@@ -258,7 +258,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
         var sentimentAnalysis = require('sentiment-analysis');
 
         function newTopic(topicArray, topicsList) {
-            console.log('received: ', topicArray);
+            //console.log('received: ', topicArray);
             topicArray.forEach(function (topic, topicIndex) {
                 var addToTopicsList = true;
                 if (topicsList.length > 0) {
@@ -304,22 +304,27 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 
                                 var sentences = ldaUtils.extractSentences(comment.comment_text);
                                 var topics = lda(sentences, 2, 5);
-                                allCommentsTopics = newTopic(topics, allCommentsTopics);
-                                //2. get sentiment
-                                var sentimentScore = getSentimentScore(comment.comment_text);
+                                if(topics == undefined){
+                                    console.log("topics is undefined, see comment text: ", comment.comment_text);
+                                }else{
 
-                                var commentData = {
-                                    topics: topics,
-                                    kind: 't1',
-                                    comment_id: comment.comment_id,
-                                    link_id: comment.link_id,
-                                    reply_count: comment.replyCount,
-                                    sentiment: sentimentScore,
-                                    ups: comment.ups,
-                                    downs: comment.downs,
-                                    topics: topics
-                                };
-                                allCommentsData.push(commentData);
+                                    allCommentsTopics = newTopic(topics, allCommentsTopics);
+                                    //2. get sentiment
+                                    var sentimentScore = getSentimentScore(comment.comment_text);
+
+                                    var commentData = {
+                                        topics: topics,
+                                        kind: 't1',
+                                        comment_id: comment.comment_id,
+                                        link_id: comment.link_id,
+                                        reply_count: comment.replyCount,
+                                        sentiment: sentimentScore,
+                                        ups: comment.ups,
+                                        downs: comment.downs,
+                                        topics: topics
+                                    };
+                                    allCommentsData.push(commentData);
+                                }
 
                             }
                         });
