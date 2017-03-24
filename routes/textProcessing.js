@@ -7,10 +7,11 @@ var ldaUtils = require(__dirname + '/ldaUtils');
 
 var mongo = require('mongodb');
 var Server = mongo.Server;
-db = mongo.Db;
+var db;
+var MONGODB_URI = "mongodb://vivian:strappy@ds141410.mlab.com:41410/heroku_5j6pjdc2";
 BSON = mongo.BSONPure;
 
-mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
+mongo.MongoClient.connect(MONGODB_URI, function(err, database) {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -18,6 +19,9 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 
     db = database;
 
+
+
+});
 
     function extractNouns(sentences) {
         var base_folder = __dirname.replace("/routes", "") + "/node_modules/natural/lib/natural/brill_pos_tagger";
@@ -419,6 +423,3 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
         });
 
     };
-
-
-});

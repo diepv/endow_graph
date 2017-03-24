@@ -7,25 +7,26 @@ var Snoocore = require('snoocore');
 var ldaUtils = require(__dirname + '/ldaUtils');
 var mongo = require('mongodb');
 var Server = mongo.Server;
-db = mongo.Db;
+var db;
 BSON = mongo.BSONPure;
+var MONGODB_URI = "mongodb://vivian:strappy@ds141410.mlab.com:41410/heroku_5j6pjdc2";
 
-mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
+mongo.MongoClient.connect(MONGODB_URI, function(err, database){
     if(err){
         console.log(err);
         process.exit(1);
     }
 
     db = database;
-
-
-db.open(function(err, db){
-    if(err){
-        console.log("db open error:", err);
-    }else{
-        console.log("db reddit connected");
-    }
 });
+
+//db.open(function(err, db){
+//    if(err){
+//        console.log("db open error:", err);
+//    }else{
+//        console.log("db reddit connected");
+//    }
+//});
 
 function logThis(name, comment){
     if(name){
@@ -132,9 +133,6 @@ function gogo(callback){
 }
 
 
-exports.getBra = function(req,res){
-    process.stdout.write("hello world");
-};
 
 function getMoreComments(linkId, childrenIds){
     var reddit = new Snoocore({
@@ -431,5 +429,3 @@ exports.getRepliesToComment = function(req,res){
     });
 };
 
-
-});

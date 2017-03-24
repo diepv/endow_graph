@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var app = express();
-var reddit = require('./routes/reddit');
-var textprocessing = require('./routes/textProcessing');
+var reddit = require('./routes/reddit.js');
+var textprocessing = require('./routes/textProcessing.js');
 // view engine setup
 
 
@@ -34,7 +34,6 @@ app.use('/users', users);
 
 app.get('/reddit',reddit.getThem);
 app.use('/printIt',reddit.printMe);
-app.get('/getBra', reddit.getBra);
 app.post("/getComment", reddit.getRepliesToComment);
 
 app.get("/lda", textprocessing.lda);
