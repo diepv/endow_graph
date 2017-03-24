@@ -330,7 +330,7 @@ mongo.MongoClient.connect(MONGODB_URI, function(err, database) {
 
         var allThreads = [];
 
-        db.collection('posts', function (error, allPosts) {
+        db.collection('posts_year', function (error, allPosts) {
             if (error) {
                 console.log("error in getting posts collection: ", error);
             } else {
