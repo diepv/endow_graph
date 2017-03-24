@@ -9,9 +9,8 @@ var mongo = require('mongodb');
 var Server = mongo.Server;
 var db;
 BSON = mongo.BSONPure;
-var MONGODB_URI = "mongodb://vivian:strappy@ds141410.mlab.com:41410/heroku_5j6pjdc2";
 
-mongo.MongoClient.connect(MONGODB_URI, function(err, database){
+mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
     if(err){
         console.log(err);
         process.exit(1);
@@ -20,6 +19,18 @@ mongo.MongoClient.connect(MONGODB_URI, function(err, database){
     db = database;
 });
 
+var reddit = new Snoocore({
+    userAgent:"strappydata/0.1 by ss_17",
+    oauth:{
+        type:'script',
+        key:'aLQrP5YcWLTCdA',
+        secret:'hGPJ8KjyS1lPNINLl_l2WHlSqcQ',
+        username:process.env.REDDIT_USERNAME,
+        password:process.env.REDDIT_PASSWORD,
+        redirectUri:'http://localhost:3000/printIt',
+        scope:['identity', 'read', 'vote']
+    }
+});
 //db.open(function(err, db){
 //    if(err){
 //        console.log("db open error:", err);
@@ -100,18 +111,7 @@ function printSlice(slice){
 
 
 function gogo(callback){
-    var reddit = new Snoocore({
-        userAgent:"strappydata/0.1 by ss_17",
-        oauth:{
-            type:'script',
-            key:'aLQrP5YcWLTCdA',
-            secret:'hGPJ8KjyS1lPNINLl_l2WHlSqcQ',
-            username:'ss_17',
-            password:'strappy',
-            redirectUri:'http://localhost:3000/printIt',
-            scope:['identity','read','vote']
-        }
-    });
+
     var sliceCount = 0; //holds all the posts gathered...
     function handleSlice(slice){
         if(slice.empty){
@@ -135,18 +135,7 @@ function gogo(callback){
 
 
 function getMoreComments(linkId, childrenIds){
-    var reddit = new Snoocore({
-        userAgent:"strappydata/0.1 by ss_17",
-        oauth:{
-            type:'script',
-            key:'aLQrP5YcWLTCdA',
-            secret:'hGPJ8KjyS1lPNINLl_l2WHlSqcQ',
-            username:'ss_17',
-            password:'strappy',
-            redirectUri:'http://localhost:3000/printIt',
-            scope:['read']
-        }
-    });
+
 
     var sliceCount = 0;
     function handleSlice(slice, err){
@@ -307,18 +296,6 @@ exports.ldaComments = function(req,res){
             postArr.forEach(function(post,pIndex){
                 var idInQuestion = post.id;
                 console.log("we're now exploring comments of this post ID: ", idInQuestion);
-                var reddit = new Snoocore({
-                    userAgent:"strappydata/0.1 by ss_17",
-                    oauth:{
-                        type:'script',
-                        key:'aLQrP5YcWLTCdA',
-                        secret:'hGPJ8KjyS1lPNINLl_l2WHlSqcQ',
-                        username:'ss_17',
-                        password:'strappy',
-                        redirectUri:'http://localhost:3000/printIt',
-                        scope:['identity','read','vote']
-                    }
-                });
 
                 function handleSlice(slice, err){
                     //slice contains the comments of the given article
@@ -347,18 +324,6 @@ exports.ldaComments = function(req,res){
 
 //This function retrieves comments given a parent id and a list of comment ids (ideal for grabbing the replies to a comment since it comes prepped as a list.
 function getCommentsFromIdList(linkId, childrenIds, callback){
-    var reddit = new Snoocore({
-        userAgent:"strappydata/0.1 by ss_17",
-        oauth:{
-            type:'script',
-            key:'aLQrP5YcWLTCdA',
-            secret:'hGPJ8KjyS1lPNINLl_l2WHlSqcQ',
-            username:'ss_17',
-            password:'strappy',
-            redirectUri:'http://localhost:3000/printIt',
-            scope:['read']
-        }
-    });
 
     var finalCommentsList = {name:linkId, children:[]};
     function handleSlice(slice, err, callback){

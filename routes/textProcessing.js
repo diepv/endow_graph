@@ -8,10 +8,9 @@ var ldaUtils = require(__dirname + '/ldaUtils');
 var mongo = require('mongodb');
 var Server = mongo.Server;
 var db;
-var MONGODB_URI = "mongodb://vivian:strappy@ds141410.mlab.com:41410/heroku_5j6pjdc2";
 BSON = mongo.BSONPure;
 
-mongo.MongoClient.connect(MONGODB_URI, function(err, database) {
+mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -22,7 +21,18 @@ mongo.MongoClient.connect(MONGODB_URI, function(err, database) {
 
 
 });
-
+var reddit = new Snoocore({
+    userAgent:"strappydata/0.1 by ss_17",
+    oauth:{
+        type:'script',
+        key:'aLQrP5YcWLTCdA',
+        secret:'hGPJ8KjyS1lPNINLl_l2WHlSqcQ',
+        username:process.env.REDDIT_USERNAME,
+        password:process.env.REDDIT_PASSWORD,
+        redirectUri:'http://localhost:3000/printIt',
+        scope:['identity', 'read', 'vote']
+    }
+});
     function extractNouns(sentences) {
         var base_folder = __dirname.replace("/routes", "") + "/node_modules/natural/lib/natural/brill_pos_tagger";
         var rulesFilename = base_folder + "/data/English/tr_from_posjs.txt";
