@@ -258,7 +258,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
         var sentimentAnalysis = require('sentiment-analysis');
 
         function newTopic(topicArray, topicsList) {
-
+            console.log('received: ', topicArray);
             topicArray.forEach(function (topic, topicIndex) {
                 var addToTopicsList = true;
                 if (topicsList.length > 0) {
@@ -304,7 +304,6 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 
                                 var sentences = ldaUtils.extractSentences(comment.comment_text);
                                 var topics = lda(sentences, 2, 5);
-                                console.log(topics);
                                 allCommentsTopics = newTopic(topics, allCommentsTopics);
                                 //2. get sentiment
                                 var sentimentScore = getSentimentScore(comment.comment_text);
