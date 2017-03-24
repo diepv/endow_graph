@@ -300,24 +300,28 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                         var allCommentsData = [];
                         comments.forEach(function (comment, cIndex) {
                             //1.get topics
-                            var sentences = ldaUtils.extractSentences(comment.comment_text);
-                            var topics = lda(sentences, 2, 5);
-                            allCommentsTopics = newTopic(topics, allCommentsTopics);
-                            //2. get sentiment
-                            var sentimentScore = getSentimentScore(comment.comment_text);
+                            if(comment.comment_text!=='' && comment.comment_text!==null){
 
-                            var commentData = {
-                                topics: topics,
-                                kind: 't1',
-                                comment_id: comment.comment_id,
-                                link_id: comment.link_id,
-                                reply_count: comment.replyCount,
-                                sentiment: sentimentScore,
-                                ups: comment.ups,
-                                downs: comment.downs,
-                                topics: topics
-                            };
-                            allCommentsData.push(commentData);
+                                var sentences = ldaUtils.extractSentences(comment.comment_text);
+                                var topics = lda(sentences, 2, 5);
+                                allCommentsTopics = newTopic(topics, allCommentsTopics);
+                                //2. get sentiment
+                                var sentimentScore = getSentimentScore(comment.comment_text);
+
+                                var commentData = {
+                                    topics: topics,
+                                    kind: 't1',
+                                    comment_id: comment.comment_id,
+                                    link_id: comment.link_id,
+                                    reply_count: comment.replyCount,
+                                    sentiment: sentimentScore,
+                                    ups: comment.ups,
+                                    downs: comment.downs,
+                                    topics: topics
+                                };
+                                allCommentsData.push(commentData);
+
+                            }
                         });
 
                         callback({'all_comments_data': allCommentsData, 'all_comments_topic': allCommentsTopics});
