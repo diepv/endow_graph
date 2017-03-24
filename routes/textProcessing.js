@@ -304,6 +304,8 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 
                                 var sentences = ldaUtils.extractSentences(comment.comment_text);
                                 var topics = lda(sentences, 2, 5);
+                                console.log("TOPICS GATHERED FOR: ", comment.comment_id);
+                                console.log(topics);
                                 if(topics == undefined){
                                     console.log("topics is undefined, see comment text: ", comment.comment_text);
                                 }else{
