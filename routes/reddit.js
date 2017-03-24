@@ -4,14 +4,19 @@
 var when = require('when');
 var https = require('https');
 var Snoocore = require('snoocore');
-var mongo = require('mongodb');
 var ldaUtils = require(__dirname + '/ldaUtils');
-
+var mongo = require('mongodb');
 var Server = mongo.Server;
-Db = mongo.Db;
+db = mongo.Db;
 BSON = mongo.BSONPure;
-var server = new Server('75.142.61.61', 27017, {auto_reconnect:true, safe:true});
-var db = new Db('reddit', server);
+
+mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
+    if(err){
+        console.log(err);
+        process.exit(1);
+    }
+
+    db = database;
 
 
 db.open(function(err, db){
@@ -426,3 +431,5 @@ exports.getRepliesToComment = function(req,res){
     });
 };
 
+
+});
