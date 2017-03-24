@@ -304,6 +304,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 
                                 var sentences = ldaUtils.extractSentences(comment.comment_text);
                                 var topics = lda(sentences, 2, 5);
+                                console.log(topics);
                                 allCommentsTopics = newTopic(topics, allCommentsTopics);
                                 //2. get sentiment
                                 var sentimentScore = getSentimentScore(comment.comment_text);
