@@ -11,6 +11,14 @@ var app = express();
 var reddit = require('./routes/reddit');
 var textprocessing = require('./routes/textProcessing');
 // view engine setup
+
+
+var server = app.listen(process.env.PORT || 3000, function(){
+  var port = server.address().port;
+  console.log('running on port: ', port);
+});
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -59,8 +67,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-app.listen(3000);
 
 
 module.exports = app;
