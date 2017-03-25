@@ -422,8 +422,12 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                             //});
 
                         }
+                        if(arr.length>0){
+                            iteratePosts(arr.pop(), postCount);
+                        }else{
+                            res.send('none matching query: ' + req.params.query);
+                        }
 
-                        iteratePosts(arr.pop(), postCount);
                     }
 
                 });
