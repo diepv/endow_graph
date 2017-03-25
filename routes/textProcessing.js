@@ -362,6 +362,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                         var postCount = 0;
 
                         function iteratePosts(post, postIndex) {
+                            console.log(post);
                             //arr.forEach(function(post, postIndex){
                             var postData = {
                                 id: post.name,
