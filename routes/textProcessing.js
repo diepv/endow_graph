@@ -259,7 +259,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 
         function newTopic(topicArray, topicsList) {
             //console.log('received: ', topicArray);
-            if(topicArray.isArray){
+            if(typeof topicArray !== "undefined"){
                 topicArray.forEach(function (topic, topicIndex) {
                     var addToTopicsList = true;
                     if (topicsList.length > 0) {
