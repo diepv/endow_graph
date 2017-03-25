@@ -259,26 +259,29 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 
         function newTopic(topicArray, topicsList) {
             //console.log('received: ', topicArray);
-            topicArray.forEach(function (topic, topicIndex) {
-                var addToTopicsList = true;
-                if (topicsList.length > 0) {
+            if(topicArray.isArray){
+                topicArray.forEach(function (topic, topicIndex) {
+                    var addToTopicsList = true;
+                    if (topicsList.length > 0) {
 
-                    topicsList.forEach(function (topicObject, index) {
-                        if (topicObject.topic == topic.term) {
-                            var newCount = topicObject.count + 1;
-                            topicObject.count = newCount;
-                            addToTopicsList = false;
-                        }
-                    });
+                        topicsList.forEach(function (topicObject, index) {
+                            if (topicObject.topic == topic.term) {
+                                var newCount = topicObject.count + 1;
+                                topicObject.count = newCount;
+                                addToTopicsList = false;
+                            }
+                        });
 
-                }
-                if (addToTopicsList == true) {
+                    }
+                    if (addToTopicsList == true) {
 
-                    //then add it to topicsList
-                    var newTopic = {topic: topic.term, count: 1};
-                    topicsList.push(newTopic);
-                }
-            });
+                        //then add it to topicsList
+                        var newTopic = {topic: topic.term, count: 1};
+                        topicsList.push(newTopic);
+                    }
+                });
+
+            }
             return topicsList;
         }
 
