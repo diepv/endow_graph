@@ -301,32 +301,31 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                         comments.forEach(function (comment, cIndex) {
                             //1.get topics
                             if(comment.comment_text!=='' && comment.comment_text!==null){
+                                if(comment.comment_text.length>2){
 
-                                var sentences = ldaUtils.extractSentences(comment.comment_text);
-                                var topics = lda(sentences, 2, 5);
-                                console.log("TOPICS GATHERED FOR: ", comment.comment_id);
-                                //console.log(topics);
-                                if(topics == undefined || topics == 'undefined' || topics == ''){
-                                    console.log("topics is undefined, see comment text: ", comment.comment_text);
-                                    console.log('topics var : ', topics);
-                                }else{
+                                    var sentences = ldaUtils.extractSentences(comment.comment_text);
+                                    var topics = lda(sentences, 2, 5);
+                                    if(topics == undefined || topics == 'undefined' || topics == '' || topics.length == 0){
 
-                                    allCommentsTopics = newTopic(topics, allCommentsTopics);
-                                    //2. get sentiment
-                                    var sentimentScore = getSentimentScore(comment.comment_text);
+                                    }else{
 
-                                    var commentData = {
-                                        topics: topics,
-                                        kind: 't1',
-                                        comment_id: comment.comment_id,
-                                        link_id: comment.link_id,
-                                        reply_count: comment.replyCount,
-                                        sentiment: sentimentScore,
-                                        ups: comment.ups,
-                                        downs: comment.downs,
-                                        topics: topics
-                                    };
-                                    allCommentsData.push(commentData);
+                                        allCommentsTopics = newTopic(topics, allCommentsTopics);
+                                        //2. get sentiment
+                                        var sentimentScore = getSentimentScore(comment.comment_text);
+
+                                        var commentData = {
+                                            topics: topics,
+                                            kind: 't1',
+                                            comment_id: comment.comment_id,
+                                            link_id: comment.link_id,
+                                            reply_count: comment.replyCount,
+                                            sentiment: sentimentScore,
+                                            ups: comment.ups,
+                                            downs: comment.downs,
+                                            topics: topics
+                                        };
+                                        allCommentsData.push(commentData);
+                                    }
                                 }
 
                             }
