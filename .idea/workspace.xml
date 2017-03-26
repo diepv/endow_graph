@@ -56,15 +56,15 @@
       <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2523191">
-              <caret line="319" column="1" selection-start-line="319" selection-start-column="1" selection-end-line="319" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.50278294">
+              <caret line="344" column="74" selection-start-line="344" selection-start-column="74" selection-end-line="344" selection-end-column="74" />
               <folding>
-                <element signature="e#13442#13528#0" expanded="false" />
-                <element signature="e#13587#16205#0" expanded="false" />
-                <element signature="e#16495#16769#0" expanded="false" />
-                <element signature="e#17337#18067#0" expanded="false" />
-                <element signature="e#18532#18893#0" expanded="false" />
-                <element signature="e#19003#19354#0" expanded="false" />
+                <element signature="e#13701#13787#0" expanded="false" />
+                <element signature="e#13846#16464#0" expanded="false" />
+                <element signature="e#16754#17028#0" expanded="false" />
+                <element signature="e#17596#18326#0" expanded="false" />
+                <element signature="e#18791#19152#0" expanded="false" />
+                <element signature="e#19262#19613#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -396,12 +396,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding>
-            <element signature="e#13442#13528#0" expanded="false" />
-            <element signature="e#13587#16205#0" expanded="false" />
-            <element signature="e#16495#16769#0" expanded="false" />
-            <element signature="e#17337#18067#0" expanded="false" />
-            <element signature="e#18532#18893#0" expanded="false" />
-            <element signature="e#19003#19354#0" expanded="false" />
+            <element signature="e#13701#13787#0" expanded="false" />
+            <element signature="e#13846#16464#0" expanded="false" />
+            <element signature="e#16754#17028#0" expanded="false" />
+            <element signature="e#17596#18326#0" expanded="false" />
+            <element signature="e#18791#19152#0" expanded="false" />
+            <element signature="e#19262#19613#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -524,15 +524,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2523191">
-          <caret line="319" column="1" selection-start-line="319" selection-start-column="1" selection-end-line="319" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.50278294">
+          <caret line="344" column="74" selection-start-line="344" selection-start-column="74" selection-end-line="344" selection-end-column="74" />
           <folding>
-            <element signature="e#13442#13528#0" expanded="false" />
-            <element signature="e#13587#16205#0" expanded="false" />
-            <element signature="e#16495#16769#0" expanded="false" />
-            <element signature="e#17337#18067#0" expanded="false" />
-            <element signature="e#18532#18893#0" expanded="false" />
-            <element signature="e#19003#19354#0" expanded="false" />
+            <element signature="e#13701#13787#0" expanded="false" />
+            <element signature="e#13846#16464#0" expanded="false" />
+            <element signature="e#16754#17028#0" expanded="false" />
+            <element signature="e#17596#18326#0" expanded="false" />
+            <element signature="e#18791#19152#0" expanded="false" />
+            <element signature="e#19262#19613#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -329,16 +329,23 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
     data.children.forEach(function(post, postIndex){
         //for each post, we grab the list of topics. for each topic, we create a node if it doesn't exist or we add our post.name to the list if it does exist.
         var postTopics = post.topics;
-        nodes.forEach(function(node,nodeIndex){
-            //for each node, check if postTOpics contains that node's topic. if yes, alter the id list.
-            postTopics.forEach(function(topicData, topicDataIndex){
-               if(topicData.topic == node.name){
-                   node.postIds.push(post.name);
-               }else{
-                   nodes.push({name:topicData.topic, postIds:post.name});
-               }
+        if(nodes.length>0){
+            nodes.forEach(function(node,nodeIndex){
+                //for each node, check if postTOpics contains that node's topic. if yes, alter the id list.
+                postTopics.forEach(function(topicData, topicDataIndex){
+                    if(topicData.topic === node.name){
+                        node.postIds.push(post.name);
+                    }else{
+                        nodes.push({name:topicData.topic, postIds:post.name});
+                    }
+                });
             });
-        });
+        }else{
+            postTopics.forEach(function(topicData, topicDataIndex){
+                    nodes.push({name:topicData.topic, postIds:post.name});
+            });
+        }
+
         //while in each post, we also create links between each and every topic and concat that list with the official links array.
         postTopics.forEach(function(topicData, topicDataIndex){
            postTopics.forEach(function(topicToLink, topicToLinkIndex){
