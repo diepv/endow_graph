@@ -480,8 +480,9 @@ function formatIntoLinksAndNodes(data, callback){
                 //post.topics is the aggregated array of topics of title + selftext. check if it has any matches with other posts in the data array
                 var searchTerm = topic.topic;
                 checkPostsFor(searchTerm, data.children, post.name, function(idArrayOfMatches){
+                    //console.log(idArrayOfMatches);
                     if(idArrayOfMatches.length>0){
-                        links.concat(idArrayOfMatches);
+                        links = links.concat(idArrayOfMatches);
                         console.log("CONCATTED. idarraymatches.length: "+idArrayOfMatches.length+" links length: "+ links.length);
                     }
                 });

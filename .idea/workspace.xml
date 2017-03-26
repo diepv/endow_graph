@@ -44,8 +44,8 @@
       <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83302414">
-              <caret line="483" column="55" selection-start-line="483" selection-start-column="55" selection-end-line="483" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.7773655">
+              <caret line="483" column="50" selection-start-line="483" selection-start-column="50" selection-end-line="483" selection-end-column="50" />
               <folding>
                 <element signature="e#9759#10763#0" expanded="false" />
                 <element signature="e#10806#10892#0" expanded="false" />
@@ -452,8 +452,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83302414">
-          <caret line="483" column="55" selection-start-line="483" selection-start-column="55" selection-end-line="483" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.7773655">
+          <caret line="483" column="50" selection-start-line="483" selection-start-column="50" selection-end-line="483" selection-end-column="50" />
           <folding>
             <element signature="e#9759#10763#0" expanded="false" />
             <element signature="e#10806#10892#0" expanded="false" />
