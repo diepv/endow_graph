@@ -336,7 +336,7 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
                     if(topicData.topic === node.name){
                         node.postIds.push(post.name);
                     }else{
-                        nodes.push({name:topicData.topic, postIds:post.name});
+                        nodes.push({name:topicData.topic, postIds:[post.name]});
                     }
                 });
             });
@@ -349,7 +349,7 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
         //while in each post, we also create links between each and every topic and concat that list with the official links array.
         postTopics.forEach(function(topicData, topicDataIndex){
            postTopics.forEach(function(topicToLink, topicToLinkIndex){
-               var newLink = {source:topicData.topic, target: topicToLink.topic, postIds: post.name};
+               var newLink = {source:topicData.topic, target: topicToLink.topic, postIds: [post.name]};
                links.push(newLink);
            }) ;
         });
