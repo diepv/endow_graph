@@ -9,8 +9,9 @@ var mongo = require('mongodb');
 var Server = mongo.Server;
 var db;
 BSON = mongo.BSONPure;
+var config = require('../config/config')
 
-mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
+mongo.MongoClient.connect(config.MONGODB_URI, function(err, database) {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -279,6 +280,79 @@ function newTopic(topicArray, topicsList) {
     return topicsList;
 }
 
+function checkPostsFor(term,posts,sourceId,callback){
+    var linksTo = [];
+    posts.forEach(function(post, postIndex){
+        if(post.topics.length>0){
+            post.topics.forEach(function(topic, tIndex){
+
+                if(topic.topic == term && post.name !== sourceId){
+                    linksTo.push({target: post.name, source:sourceId, value:topic.topic});
+                }
+            });
+        }
+    });
+
+    callback(linksTo);
+}
+
+
+function formatIntoLinksAndNodes(data, callback){
+    //nodes are posts and links are shared topics
+    var nodes = [];
+    var links = [];
+    data.children.forEach(function(post, postIndex){
+        if (post.topics.length>0){
+            post.topics.forEach(function(topic, topicSetIndex){
+                //post.topics is the aggregated array of topics of title + selftext. check if it has any matches with other posts in the data array
+                var searchTerm = topic.topic;
+                checkPostsFor(searchTerm, data.children, post.name, function(idArrayOfMatches){
+
+                    if(idArrayOfMatches.length>0){
+                        links = links.concat(idArrayOfMatches);
+                    }
+                });
+            });
+        }
+        nodes.push(post);
+    });
+    callback({nodes:nodes, links:links});
+}
+
+function formatIntoTopicNodesAndLinks(data, finalCallback){
+    console.log("inside formatIntoTopicNodesAndLinks");
+    //nodes are topics - they should contain the topic name and full count of # of posts it is a topic in (should match links)
+    var nodes = [];
+    var links = [];
+
+
+    data.children.forEach(function(post, postIndex){
+        //for each post, we grab the list of topics. for each topic, we create a node if it doesn't exist or we add our post.name to the list if it does exist.
+        var postTopics = post.topics;
+        nodes.forEach(function(node,nodeIndex){
+            //for each node, check if postTOpics contains that node's topic. if yes, alter the id list.
+            postTopics.forEach(function(topicData, topicDataIndex){
+               if(topicData.topic == node.name){
+                   node.postIds.push(post.name);
+               }else{
+                   nodes.push({name:topicData.topic, postIds:post.name});
+               }
+            });
+        });
+        //while in each post, we also create links between each and every topic and concat that list with the official links array.
+        postTopics.forEach(function(topicData, topicDataIndex){
+           postTopics.forEach(function(topicToLink, topicToLinkIndex){
+               var newLink = {source:topicData.topic, target: topicToLink.topic, postId: post.name};
+               links.push(newLink);
+           }) ;
+        });
+    });
+
+    finalCallback({nodes:nodes, links:links});
+
+}
+
+
 exports.getThreadsByKeyword = function (req, res) {
         var queryTerm = req.params.query;
         var linksAndNodes = req.params.linkNodeStructure;
@@ -422,13 +496,16 @@ exports.getThreadsByKeyword = function (req, res) {
                                 postCount++;
                                 console.log('arr.length: ', arr.length);
                                 if (arr.length == 0) {
+                                    console.log('linksAndNodes: ', linksAndNodes);
                                     switch(linksAndNodes){
-                                        case 0:
+                                        case "0":
+                                            console.log("about to summon formatIntoLinksAndNodes");
                                             formatIntoLinksAndNodes(dataOfPosts, function(linksAndNodes){
                                                 res.send(linksAndNodes);
                                             });
                                             break;
-                                        case 1:
+                                        case "1":
+                                            console.log("about to summon formatIntoTopic");
                                             formatIntoTopicNodesAndLinks(dataOfPosts, function(linksNodesByTopic){
                                                 res.send(linksNodesByTopic);
                                             });
@@ -460,150 +537,3 @@ exports.getThreadsByKeyword = function (req, res) {
 
     };
 
-function checkPostsFor(term,posts,sourceId,callback){
-    var linksTo = [];
-    posts.forEach(function(post, postIndex){
-        if(post.topics.length>0){
-            post.topics.forEach(function(topic, tIndex){
-
-                if(topic.topic == term && post.name !== sourceId){
-                    linksTo.push({target: post.name, source:sourceId, value:topic.topic});
-                }
-            });
-        }
-    });
-
-    callback(linksTo);
-}
-
-
-function formatIntoLinksAndNodes(data, callback){
-    //nodes are posts and links are shared topics
-    var nodes = [];
-    var links = [];
-    data.children.forEach(function(post, postIndex){
-        if (post.topics.length>0){
-            post.topics.forEach(function(topic, topicSetIndex){
-                //post.topics is the aggregated array of topics of title + selftext. check if it has any matches with other posts in the data array
-                var searchTerm = topic.topic;
-                checkPostsFor(searchTerm, data.children, post.name, function(idArrayOfMatches){
-
-                    if(idArrayOfMatches.length>0){
-                        links = links.concat(idArrayOfMatches);
-                    }
-                });
-            });
-        }
-        nodes.push(post);
-    });
-    callback({nodes:nodes, links:links});
-}
-
-//NEED TO REVERSE THINGS. CREATES LINKS BETWEEN TOPICS RATHER THAN POSTS. NODES = TOPICS... ><
-
-function getUniqueNode(topic,node, addToCount){
-
-        if(node.name == topic){
-            if(addToCount){
-                var nCount = node.count + 1;
-                return {name: topic, count: nCount};
-            }
-        }else{
-            return {name: topic, count: 1};
-        }
-
-}
-
-function getUniqueLink(post, topicInQuestion, topicInQuestionIndex, allLinks, addToCount, callback){
-
-    var postTopics = post.topics;
-    postTopics.forEach(function(topic, topicIndex){
-        if(topicIndex!==topicInQuestionIndex) {
-
-            //as long as the topic is not the same topic we're examining, then continue:
-            allLinks.forEach(function (establishedLink, elIndex) {
-                if (establishedLink.source == topicInQuestion || establishedLink.target == topicInQuestion) {
-                    if (establishedLink.source == topic.topic || establishedLink.target == topic.topic) {
-                        //this means that the link already exists in some form of source/target. just add 1 to the count of the establishedLink
-                        if(addToCount){
-                            establishedLink.count = establishedLink.count + 1;
-                        }else{
-                            //nada :)
-                        }
-                        establishedLink.posts.push(post.name);
-
-                    }else{
-                        //this means that hte link between this topic and the topicInQuestion does not yet exist. so, create it and add to alllinks
-                        var newLink = {source:topicInQuestion, target: topic.topic, count:1, posts:[post.name]};
-                        allLinks.push(newLink);
-                    }
-                }
-            });
-        }
-    });
-    callback(allLinks);
-
-}
-
-//function createLinksAndNodes(topic, nodes, links, callback){
-//    nodes.forEach(function(node, nodeIndex){
-//        var nodeObject = addUniqueNode(topic, node, true);
-//        var linkObject =
-//
-//    });
-//}
-
-function formatIntoTopicNodesAndLinks(data, finalCallback){
-    console.log("inside formatIntoTopicNodesAndLinks");
-    //nodes are topics - they should contain the topic name and full count of # of posts it is a topic in (should match links)
-    var nodes = [];
-    var links = [];
-
-    function goThroughPosts(post, postIndex){
-        console.log('going through post index: ', postIndex);
-        var count = 0;
-        var postTopics = post.topics;
-        //for each of the topics in a post, create a node object if it doesn't already exist. if it does, add 1 to the count.
-        //for each of the topics in a post, create a link object between every topic in the post. if the link between those two topics already exist, add 1 to the count
-        function makeLinkNodeforTopic(topic, topicIndex, callback){
-
-            nodes = addUniqueNode(topic.topic, nodes, true);
-            getUniqueLink(post,topic.topic,topicIndex,links,true, function(allLinks){
-                links = allLinks;
-                var nextTopicIndex = topicIndex++;
-                var nextTopic = postTopics[nextTopicIndex];
-                if(nextTopic!=='undefined'){
-                    makeLinkNodeforTopic(nextTopic, nextTopicIndex, function(ok){
-                        if(ok){
-                            callback(true);
-                        }else{
-                            callback(false);
-                        }
-                    });
-                }else{
-                    callback(true);
-                }
-
-            });
-
-        }
-
-        makeLinkNodeforTopic(postTopics[0],0, function(okay){
-            if(okay){
-
-                var nextIndex = postIndex++;
-                var nextPost = data.children[nextIndex];
-                console.log('hitting up this index next in makeLinkNodeforTopic: ', nextIndex);
-                if(nextPost !== 'undefined'){
-                    goThroughPosts(nextPost, nextIndex);
-                }else{
-                    finalCallback({nodes:nodes, links:links});
-                }
-            }
-        });
-
-    }
-
-    goThroughPosts(data.children[0], 0);
-
-}

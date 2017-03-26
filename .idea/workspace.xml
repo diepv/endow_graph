@@ -34,9 +34,21 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.7037038">
-              <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+            <state vertical-scroll-proportion="-6.6666665">
+              <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reddit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/reddit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="157.81482">
+              <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+              <folding>
+                <element signature="e#4487#5380#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,18 +56,15 @@
       <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74953616">
-              <caret line="595" column="95" selection-start-line="595" selection-start-column="95" selection-end-line="595" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.2523191">
+              <caret line="319" column="1" selection-start-line="319" selection-start-column="1" selection-end-line="319" selection-end-column="1" />
               <folding>
-                <element signature="e#10622#10708#0" expanded="false" />
-                <element signature="e#10767#13385#0" expanded="false" />
-                <element signature="e#13675#13949#0" expanded="false" />
-                <element signature="e#14517#15247#0" expanded="false" />
-                <element signature="e#15712#16073#0" expanded="false" />
-                <element signature="e#16183#16534#0" expanded="false" />
-                <element signature="n#!!block;n#formatIntoLinksAndNodes#0" expanded="false" />
-                <element signature="n#!!block;n#getUniqueNode#0" expanded="false" />
-                <element signature="n#!!block;n#getUniqueLink#0" expanded="false" />
+                <element signature="e#13442#13528#0" expanded="false" />
+                <element signature="e#13587#16205#0" expanded="false" />
+                <element signature="e#16495#16769#0" expanded="false" />
+                <element signature="e#17337#18067#0" expanded="false" />
+                <element signature="e#18532#18893#0" expanded="false" />
+                <element signature="e#19003#19354#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -88,8 +97,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Html5" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -103,8 +112,12 @@
         <option value="$PROJECT_DIR$/views/index.html" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/routes/mongosetup.js" />
-        <option value="$PROJECT_DIR$/routes/reddit.js" />
+        <option value="$PROJECT_DIR$/config/env/development.json" />
+        <option value="$PROJECT_DIR$/config/env/production.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/reddit.js" />
+        <option value="$PROJECT_DIR$/config/config.js" />
+        <option value="$PROJECT_DIR$/config/env/development.js" />
         <option value="$PROJECT_DIR$/routes/textProcessing.js" />
       </list>
     </option>
@@ -117,8 +130,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="322" />
-    <option name="y" value="23" />
+    <option name="x" value="79" />
+    <option name="y" value="92" />
     <option name="width" value="1170" />
     <option name="height" value="686" />
   </component>
@@ -207,6 +220,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strappydata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strappydata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strappydata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strappydata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="env" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -280,10 +325,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="322" y="23" width="1170" height="686" extended-state="0" />
+    <frame x="79" y="92" width="1170" height="686" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17910448" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17841601" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -341,7 +386,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4448#5341#0" expanded="false" />
+            <element signature="e#4487#5380#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -351,15 +396,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding>
-            <element signature="e#10622#10708#0" expanded="false" />
-            <element signature="e#10767#13385#0" expanded="false" />
-            <element signature="e#13675#13949#0" expanded="false" />
-            <element signature="e#14517#15247#0" expanded="false" />
-            <element signature="e#15712#16073#0" expanded="false" />
-            <element signature="e#16183#16534#0" expanded="false" />
-            <element signature="n#!!block;n#formatIntoLinksAndNodes#0" expanded="false" />
-            <element signature="n#!!block;n#getUniqueNode#0" expanded="false" />
-            <element signature="n#!!block;n#getUniqueLink#0" expanded="false" />
+            <element signature="e#13442#13528#0" expanded="false" />
+            <element signature="e#13587#16205#0" expanded="false" />
+            <element signature="e#16495#16769#0" expanded="false" />
+            <element signature="e#17337#18067#0" expanded="false" />
+            <element signature="e#18532#18893#0" expanded="false" />
+            <element signature="e#19003#19354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -402,24 +444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/reddit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10907003">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding>
-            <element signature="e#4448#5341#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13729978">
@@ -446,28 +470,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7037038">
-          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+        <state vertical-scroll-proportion="-6.6666665">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/env/production.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13250883">
+          <caret line="5" column="44" selection-start-line="5" selection-start-column="44" selection-end-line="5" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/env/development.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0795053">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26501766">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/reddit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="157.81482">
+          <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+          <folding>
+            <element signature="e#4487#5380#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74953616">
-          <caret line="595" column="95" selection-start-line="595" selection-start-column="95" selection-end-line="595" selection-end-column="95" />
+        <state vertical-scroll-proportion="0.2523191">
+          <caret line="319" column="1" selection-start-line="319" selection-start-column="1" selection-end-line="319" selection-end-column="1" />
           <folding>
-            <element signature="e#10622#10708#0" expanded="false" />
-            <element signature="e#10767#13385#0" expanded="false" />
-            <element signature="e#13675#13949#0" expanded="false" />
-            <element signature="e#14517#15247#0" expanded="false" />
-            <element signature="e#15712#16073#0" expanded="false" />
-            <element signature="e#16183#16534#0" expanded="false" />
-            <element signature="n#!!block;n#formatIntoLinksAndNodes#0" expanded="false" />
-            <element signature="n#!!block;n#getUniqueNode#0" expanded="false" />
-            <element signature="n#!!block;n#getUniqueLink#0" expanded="false" />
+            <element signature="e#13442#13528#0" expanded="false" />
+            <element signature="e#13587#16205#0" expanded="false" />
+            <element signature="e#16495#16769#0" expanded="false" />
+            <element signature="e#17337#18067#0" expanded="false" />
+            <element signature="e#18532#18893#0" expanded="false" />
+            <element signature="e#19003#19354#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -9,8 +9,9 @@ var mongo = require('mongodb');
 var Server = mongo.Server;
 var db;
 BSON = mongo.BSONPure;
-
-mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
+var config = require("../config/config");
+console.log(config);
+mongo.MongoClient.connect(config.MONGODB_URI, function(err, database){
     if(err){
         console.log(err);
         process.exit(1);
@@ -23,10 +24,10 @@ var reddit = new Snoocore({
     userAgent:"strappydata/0.1 by ss_17",
     oauth:{
         type:'script',
-        key:'aLQrP5YcWLTCdA',
-        secret:'hGPJ8KjyS1lPNINLl_l2WHlSqcQ',
-        username:process.env.REDDIT_USERNAME,
-        password:process.env.REDDIT_PASSWORD,
+        key:config.REDDIT_KEY,
+        secret:config.REDDIT_SECRET,
+        username:config.REDDIT_USERNAME,
+        password:config.REDDIT_PASSWORD,
         redirectUri:'http://localhost:3000/printIt',
         scope:['identity', 'read', 'vote']
     }

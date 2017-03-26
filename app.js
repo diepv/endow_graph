@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var app = express();
 var reddit = require('./routes/reddit.js');
 var textprocessing = require('./routes/textProcessing.js');
+var config = require("./config/config");
 // view engine setup
 
 
@@ -17,6 +18,7 @@ var server = app.listen(process.env.PORT || 3000, function(){
   var port = server.address().port;
   console.log('running on port: ', port);
 });
+
 
 
 app.set('views', path.join(__dirname, 'views'));
