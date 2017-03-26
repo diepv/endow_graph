@@ -251,40 +251,40 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 // (1) list of topics by their count (# of times topic came up when reviewing each comment/reply)
 // (2) # of 1st level replies/comments
 // (3) overall sentiment? or reply-level sentiment?
+function newTopic(topicArray, topicsList) {
+    //console.log('received: ', topicArray);
+    if(typeof topicArray !== "undefined"){
+        topicArray.forEach(function (topic, topicIndex) {
+            var addToTopicsList = true;
+            if (topicsList.length > 0) {
 
+                topicsList.forEach(function (topicObject, index) {
+                    if (topicObject.topic == topic.term) {
+                        var newCount = topicObject.count + 1;
+                        topicObject.count = newCount;
+                        addToTopicsList = false;
+                    }
+                });
+
+            }
+            if (addToTopicsList == true) {
+
+                //then add it to topicsList
+                var newTopic = {topic: topic.term, count: 1};
+                topicsList.push(newTopic);
+            }
+        });
+
+    }
+    return topicsList;
+}
 
 exports.getThreadsByKeyword = function (req, res) {
         var queryTerm = req.params.query;
         var linksAndNodes = req.params.linkNodeStructure;
         var sentimentAnalysis = require('sentiment-analysis');
 
-        function newTopic(topicArray, topicsList) {
-            //console.log('received: ', topicArray);
-            if(typeof topicArray !== "undefined"){
-                topicArray.forEach(function (topic, topicIndex) {
-                    var addToTopicsList = true;
-                    if (topicsList.length > 0) {
 
-                        topicsList.forEach(function (topicObject, index) {
-                            if (topicObject.topic == topic.term) {
-                                var newCount = topicObject.count + 1;
-                                topicObject.count = newCount;
-                                addToTopicsList = false;
-                            }
-                        });
-
-                    }
-                    if (addToTopicsList == true) {
-
-                        //then add it to topicsList
-                        var newTopic = {topic: topic.term, count: 1};
-                        topicsList.push(newTopic);
-                    }
-                });
-
-            }
-            return topicsList;
-        }
 
         function getSentimentScore(text) {
             var score = sentimentAnalysis(text);
@@ -422,10 +422,17 @@ exports.getThreadsByKeyword = function (req, res) {
                                 postCount++;
                                 console.log('arr.length: ', arr.length);
                                 if (arr.length == 0) {
-                                    if(linksAndNodes){
-                                        formatIntoLinksAndNodes(dataOfPosts, function(linksAndNodes){
-                                            res.send(linksAndNodes);
-                                        });
+                                    switch(linksAndNodes){
+                                        case 0:
+                                            formatIntoLinksAndNodes(dataOfPosts, function(linksAndNodes){
+                                                res.send(linksAndNodes);
+                                            });
+                                            break;
+                                        case 1:
+                                            formatIntoTopicNodesAndLinks(dataOfPosts, function(linksNodesByTopic){
+                                                res.send(linksNodesByTopic);
+                                            });
+                                            break;
                                     }
                                 } else {
                                     iteratePosts(arr.pop(), postCount);
@@ -490,4 +497,112 @@ function formatIntoLinksAndNodes(data, callback){
         nodes.push(post);
     });
     callback({nodes:nodes, links:links});
+}
+
+//NEED TO REVERSE THINGS. CREATES LINKS BETWEEN TOPICS RATHER THAN POSTS. NODES = TOPICS... ><
+
+function getUniqueNode(topic,node, addToCount){
+
+        if(node.name == topic){
+            if(addToCount){
+                var nCount = node.count + 1;
+                return {name: topic, count: nCount};
+            }
+        }else{
+            return {name: topic, count: 1};
+        }
+
+}
+
+function getUniqueLink(post, topicInQuestion, topicInQuestionIndex, allLinks, addToCount, callback){
+
+    var postTopics = post.topics;
+    postTopics.forEach(function(topic, topicIndex){
+        if(topicIndex!==topicInQuestionIndex) {
+
+            //as long as the topic is not the same topic we're examining, then continue:
+            allLinks.forEach(function (establishedLink, elIndex) {
+                if (establishedLink.source == topicInQuestion || establishedLink.target == topicInQuestion) {
+                    if (establishedLink.source == topic.topic || establishedLink.target == topic.topic) {
+                        //this means that the link already exists in some form of source/target. just add 1 to the count of the establishedLink
+                        if(addToCount){
+                            establishedLink.count = establishedLink.count + 1;
+                        }else{
+                            //nada :)
+                        }
+                        establishedLink.posts.push(post.name);
+
+                    }else{
+                        //this means that hte link between this topic and the topicInQuestion does not yet exist. so, create it and add to alllinks
+                        var newLink = {source:topicInQuestion, target: topic.topic, count:1, posts:[post.name]};
+                        allLinks.push(newLink);
+                    }
+                }
+            });
+        }
+    });
+    callback(allLinks);
+
+}
+
+//function createLinksAndNodes(topic, nodes, links, callback){
+//    nodes.forEach(function(node, nodeIndex){
+//        var nodeObject = addUniqueNode(topic, node, true);
+//        var linkObject =
+//
+//    });
+//}
+
+function formatIntoTopicNodesAndLinks(data, finalCallback){
+    //nodes are topics - they should contain the topic name and full count of # of posts it is a topic in (should match links)
+    var nodes = [];
+    var links = [];
+
+    function goThroughPosts(post, postIndex){
+
+        var count = 0;
+        var postTopics = post.topics;
+        //for each of the topics in a post, create a node object if it doesn't already exist. if it does, add 1 to the count.
+        //for each of the topics in a post, create a link object between every topic in the post. if the link between those two topics already exist, add 1 to the count
+        function makeLinkNodeforTopic(topic, topicIndex, callback){
+
+            nodes = addUniqueNode(topic.topic, nodes, true);
+            getUniqueLink(post,topic.topic,topicIndex,links,true, function(allLinks){
+                links = allLinks;
+                var nextTopicIndex = topicIndex++;
+                var nextTopic = postTopics[nextTopicIndex];
+                if(nextTopic!=='undefined'){
+                    makeLinkNodeforTopic(nextTopic, nextTopicIndex, function(ok){
+                        if(ok){
+                            callback(true);
+                        }else{
+                            callback(false);
+                        }
+                    });
+                }else{
+                    callback(true);
+                }
+
+            });
+
+        }
+
+        makeLinkNodeforTopic(postTopics[0],0, function(okay){
+            if(okay){
+
+                var nextIndex = postIndex++;
+                var nextPost = data.children[nextIndex];
+
+                if(nextPost !== 'undefined'){
+                    goThroughPosts(nextPost, nextIndex);
+                }else{
+                    finalCallback({nodes:nodes, links:links});
+                }
+            }
+        });
+
+    }
+
+    goThroughPosts(data.children[0], 0);
+
 }
