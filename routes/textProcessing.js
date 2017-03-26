@@ -342,7 +342,7 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
             });
         }else{
             postTopics.forEach(function(topicData, topicDataIndex){
-                    nodes.push({name:topicData.topic, postIds:post.name});
+                    nodes.push({name:topicData.topic, postIds:[post.name]});
             });
         }
 
