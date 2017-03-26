@@ -340,8 +340,24 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
         //while in each post, we also create links between each and every topic and concat that list with the official links array.
         postTopics.forEach(function(topicData, topicDataIndex){
            postTopics.forEach(function(topicToLink, topicToLinkIndex){
-               var newLink = {source:topicData.topic, target: topicToLink.topic, postIds: [post.name]};
-               links.push(newLink);
+               var newLink;
+               var pushNewLink = true;
+               links.forEach(function(link, lIndex){
+                   if(link.source == topicData.topic || link.target == topicData.topic){
+                       if(link.source == topicToLink.topic || link.target == topicToLink.topic){
+                           link.postIds.push(post.name);
+                           pushNewLink = false;
+                       }
+                   }
+               });
+               if(pushNewLink){
+                   newLink = {source:topicData.topic, target: topicToLink.topic, postIds: [post.name]};
+                   links.push(newLink);
+               }
+
+
+
+
            }) ;
         });
     });
