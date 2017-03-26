@@ -31,21 +31,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58627087">
+            <state vertical-scroll-proportion="1.7037038">
               <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="17.518518">
-              <caret line="428" column="47" selection-start-line="428" selection-start-column="47" selection-end-line="428" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.16512059">
+              <caret line="561" column="61" selection-start-line="561" selection-start-column="61" selection-end-line="561" selection-end-column="61" />
               <folding>
                 <element signature="e#10622#10708#0" expanded="false" />
                 <element signature="e#10767#13385#0" expanded="false" />
@@ -117,7 +117,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="125" />
+    <option name="x" value="322" />
     <option name="y" value="23" />
     <option name="width" value="1170" />
     <option name="height" value="686" />
@@ -280,7 +280,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="125" y="23" width="1170" height="686" extended-state="0" />
+    <frame x="322" y="23" width="1170" height="686" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17910448" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -446,10 +446,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7037038">
+          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="17.518518">
-          <caret line="428" column="47" selection-start-line="428" selection-start-column="47" selection-end-line="428" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.16512059">
+          <caret line="561" column="61" selection-start-line="561" selection-start-column="61" selection-end-line="561" selection-end-column="61" />
           <folding>
             <element signature="e#10622#10708#0" expanded="false" />
             <element signature="e#10767#13385#0" expanded="false" />
@@ -461,14 +469,6 @@
             <element signature="n#!!block;n#getUniqueNode#0" expanded="false" />
             <element signature="n#!!block;n#getUniqueLink#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58627087">
-          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>

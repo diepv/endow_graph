@@ -559,7 +559,7 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
     var links = [];
 
     function goThroughPosts(post, postIndex){
-
+        console.log('going through post index: ', postIndex);
         var count = 0;
         var postTopics = post.topics;
         //for each of the topics in a post, create a node object if it doesn't already exist. if it does, add 1 to the count.
