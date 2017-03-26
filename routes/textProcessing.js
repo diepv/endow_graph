@@ -334,7 +334,18 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
             //if(justTopics.indexOf(topicData.topic)>-1){
             //    //find the entry in nodes with this topic and add to the postIds.
             //}
-            nodes.push({name: topicData.topic, postIds: [post.name]});
+            var pushNewNode = true;
+            nodes.forEach(function(node,nindex){
+                if(node.topic == topicData.topic){
+                    node.postIds.push(post.name);
+                    pushNewNode = false;
+                }
+
+            });
+            if(pushNewNode){
+                nodes.push({name: topicData.topic, postIds: [post.name]});
+            }
+
         });
 
         //while in each post, we also create links between each and every topic and concat that list with the official links array.
@@ -345,7 +356,11 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
                links.forEach(function(link, lIndex){
                    if(link.source == topicData.topic || link.target == topicData.topic){
                        if(link.source == topicToLink.topic || link.target == topicToLink.topic){
-                           link.postIds.push(post.name);
+                           if(link.postIds.indexOf(post.name)>-1){
+
+                           }else{
+                               link.postIds.push(post.name);
+                           }
                            pushNewLink = false;
                        }
                    }
@@ -365,7 +380,7 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
 
     console.log("NODES LENGTH: ",nodes.length);
     console.log("LINKS LENGTH: ",links.length);
-    finalCallback({nodes:nodes, links:links});
+    finalCallback({nodes:nodes, links:links, posts:data.children});
 
 }
 
