@@ -458,9 +458,9 @@ function checkPostsFor(term,posts,sourceId,callback){
     posts.forEach(function(post, postIndex){
         if(post.topics.length>0){
             post.topics.forEach(function(topic, tIndex){
-                console.log("topic.topic: "+ topic.topic+ " , term: " +term);
-                if(topic.topic == term){
-                    linksTo.push({target: post.name, source:sourceId,value:topic.topic});
+
+                if(topic.topic == term && post.name !== sourceId){
+                    linksTo.push({target: post.name, source:sourceId, value:topic.topic});
                 }
             });
         }
@@ -480,10 +480,9 @@ function formatIntoLinksAndNodes(data, callback){
                 //post.topics is the aggregated array of topics of title + selftext. check if it has any matches with other posts in the data array
                 var searchTerm = topic.topic;
                 checkPostsFor(searchTerm, data.children, post.name, function(idArrayOfMatches){
-                    //console.log(idArrayOfMatches);
+
                     if(idArrayOfMatches.length>0){
                         links = links.concat(idArrayOfMatches);
-                        console.log("CONCATTED. idarraymatches.length: "+idArrayOfMatches.length+" links length: "+ links.length);
                     }
                 });
             });
