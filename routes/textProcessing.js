@@ -458,6 +458,7 @@ function checkPostsFor(term,posts,sourceId,callback){
     posts.forEach(function(post, postIndex){
         if(post.topics.length>0){
             post.topics.forEach(function(topic, tIndex){
+                console.log("topic.topic: "+ topic.topic+ " , term: " +term);
                 if(topic.topic == term){
                     linksTo.push({target: post.name, source:sourceId,value:topic.topic});
                 }
@@ -481,6 +482,7 @@ function formatIntoLinksAndNodes(data, callback){
                 checkPostsFor(searchTerm, data.children, post.name, function(idArrayOfMatches){
                     if(idArrayOfMatches.length>0){
                         links.concat(idArrayOfMatches);
+                        console.log("CONCATTED. links length: ", links.length);
                     }
                 });
             });
