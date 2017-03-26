@@ -554,6 +554,7 @@ function getUniqueLink(post, topicInQuestion, topicInQuestionIndex, allLinks, ad
 //}
 
 function formatIntoTopicNodesAndLinks(data, finalCallback){
+    console.log("inside formatIntoTopicNodesAndLinks");
     //nodes are topics - they should contain the topic name and full count of # of posts it is a topic in (should match links)
     var nodes = [];
     var links = [];
@@ -592,7 +593,7 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
 
                 var nextIndex = postIndex++;
                 var nextPost = data.children[nextIndex];
-
+                console.log('hitting up this index next in makeLinkNodeforTopic: ', nextIndex);
                 if(nextPost !== 'undefined'){
                     goThroughPosts(nextPost, nextIndex);
                 }else{
