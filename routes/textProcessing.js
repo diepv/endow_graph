@@ -482,7 +482,7 @@ function formatIntoLinksAndNodes(data, callback){
                 checkPostsFor(searchTerm, data.children, post.name, function(idArrayOfMatches){
                     if(idArrayOfMatches.length>0){
                         links.concat(idArrayOfMatches);
-                        console.log("CONCATTED. links length: ", links.length);
+                        console.log("CONCATTED. idarraymatches.length: "+idArrayOfMatches.length+" links length: "+ links.length);
                     }
                 });
             });
