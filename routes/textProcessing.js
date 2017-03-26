@@ -354,7 +354,8 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
            }) ;
         });
     });
-
+    console.log("NODES LENGTH: ",nodes.length);
+    console.log("LINKS LENGTH: ",links.length);
     finalCallback({nodes:nodes, links:links});
 
 }
