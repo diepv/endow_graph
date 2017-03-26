@@ -50,7 +50,7 @@ app.get("/lda", textprocessing.lda);
 app.get("/agg", textprocessing.ldaCount);
 app.get("/commentsAgg", textprocessing.commentsAgg);
 app.get("/search/:query", textprocessing.getCommentsByKeyword);
-app.get("/threadsWithKeyword/:query", textprocessing.getThreadsByKeyword);
+app.get("/threadsWithKeyword/:query/:linkNodeStructure", textprocessing.getThreadsByKeyword);
 app.get("/testComments", reddit.ldaComments);
 
 

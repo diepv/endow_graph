@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.148149">
-              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6419295">
+              <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -51,12 +51,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31228474">
-              <caret line="364" column="46" selection-start-line="364" selection-start-column="46" selection-end-line="364" selection-end-column="46" />
-              <folding />
+            <state vertical-scroll-proportion="-2.1851852">
+              <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+              <folding>
+                <element signature="e#9759#10763#0" expanded="false" />
+                <element signature="e#10806#10892#0" expanded="false" />
+                <element signature="e#10951#13569#0" expanded="false" />
+                <element signature="e#13859#14133#0" expanded="false" />
+                <element signature="e#14701#15431#0" expanded="false" />
+                <element signature="e#15896#16257#0" expanded="false" />
+                <element signature="e#16367#16718#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,8 +112,8 @@
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/routes/mongosetup.js" />
         <option value="$PROJECT_DIR$/routes/reddit.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/textProcessing.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -117,10 +125,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="424" />
-    <option name="y" value="561" />
-    <option name="width" value="1609" />
-    <option name="height" value="1018" />
+    <option name="x" value="125" />
+    <option name="y" value="23" />
+    <option name="width" value="1170" />
+    <option name="height" value="686" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -280,7 +288,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="424" y="561" width="1609" height="1018" extended-state="0" />
+    <frame x="125" y="23" width="1170" height="686" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17910448" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -315,7 +323,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -350,7 +358,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="e#9759#10763#0" expanded="false" />
+            <element signature="e#10806#10892#0" expanded="false" />
+            <element signature="e#10951#13569#0" expanded="false" />
+            <element signature="e#13859#14133#0" expanded="false" />
+            <element signature="e#14701#15431#0" expanded="false" />
+            <element signature="e#15896#16257#0" expanded="false" />
+            <element signature="e#16367#16718#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -436,18 +452,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.148149">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-2.1851852">
+          <caret line="253" column="0" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+          <folding>
+            <element signature="e#9759#10763#0" expanded="false" />
+            <element signature="e#10806#10892#0" expanded="false" />
+            <element signature="e#10951#13569#0" expanded="false" />
+            <element signature="e#13859#14133#0" expanded="false" />
+            <element signature="e#14701#15431#0" expanded="false" />
+            <element signature="e#15896#16257#0" expanded="false" />
+            <element signature="e#16367#16718#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31228474">
-          <caret line="364" column="46" selection-start-line="364" selection-start-column="46" selection-end-line="364" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.6419295">
+          <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
           <folding />
         </state>
       </provider>

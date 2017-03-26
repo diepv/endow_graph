@@ -253,8 +253,9 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
 // (3) overall sentiment? or reply-level sentiment?
 
 
-    exports.getThreadsByKeyword = function (req, res) {
+exports.getThreadsByKeyword = function (req, res) {
         var queryTerm = req.params.query;
+        var linksAndNodes = req.params.linkNodeStructure;
         var sentimentAnalysis = require('sentiment-analysis');
 
         function newTopic(topicArray, topicsList) {
@@ -306,6 +307,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                             if(comment.comment_text!=='' && comment.comment_text!==null){
                                 var sentences = ldaUtils.extractSentences(comment.comment_text);
                                 var topics = lda(sentences, 2, 5);
+                                var topicsUnique = newTopic(topics, []);
                                 if(topics == undefined || topics == 'undefined' || topics == '' || topics.length == 0){
 
                                 }else{
@@ -315,8 +317,11 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                                     var sentimentScore = getSentimentScore(comment.comment_text);
 
                                     var commentData = {
-                                        topics: topics,
-                                        kind: 't1',
+                                        topics: topicsUnique,
+                                        kind:'comment',
+                                        kind_type: 't1',
+                                        name:comment.comment_id,
+                                        comment_text:comment.comment_text,
                                         comment_id: comment.comment_id,
                                         link_id: comment.link_id,
                                         reply_count: comment.replyCount,
@@ -362,13 +367,16 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                         var postCount = 0;
 
                         function iteratePosts(post, postIndex) {
-                            console.log(post);
                             //arr.forEach(function(post, postIndex){
                             var postData = {
-                                id: post.name,
-                                kind: 't3',
+                                name: post.name,
+                                kind:'post',
+                                kind_code: 't3',
                                 title: post.title,
                                 title_topics: [],
+                                self_text: post.selftext,
+                                text_topics:[],
+                                topics:[],
                                 reply_count: post.num_comments,
                                 sentiment: '',
                                 ups: post.ups,
@@ -389,7 +397,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                                 var selfTextSentences = postText.match(/[^\.!\?]+[\.!\?]+/g);
                                 var selfTextTopics = lda(selfTextSentences, 1, 5);
                                 topicsList = newTopic(selfTextTopics[0], topicsList);
-                                postData.title_topics = topicsList;
+                                postData.text_topics = topicsList;
                             }
 
                             //get topics of the TITLE
@@ -397,6 +405,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                                 var titleBreakdown = ldaUtils.extractSentences(postTitle);
                                 var titleTopics = lda(titleBreakdown, 1, 3);
                                 topicsList = newTopic(titleTopics[0], topicsList);
+                                postData.title_topics = titleTopics;
                             }
 
                             postData.topics = topicsList;
@@ -413,7 +422,11 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                                 postCount++;
                                 console.log('arr.length: ', arr.length);
                                 if (arr.length == 0) {
-                                    res.send(dataOfPosts);
+                                    if(linksAndNodes){
+                                        formatIntoLinksAndNodes(dataOfPosts, function(linksAndNodes){
+                                            res.send(linksAndNodes);
+                                        });
+                                    }
                                 } else {
                                     iteratePosts(arr.pop(), postCount);
                                 }
@@ -426,6 +439,7 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
                         if(arr.length>0){
                             iteratePosts(arr.pop(), postCount);
                         }else{
+
                             res.send('none matching query: ' + req.params.query);
                         }
 
@@ -438,3 +452,40 @@ mongo.MongoClient.connect(process.env.MONGODB_URI, function(err, database) {
         });
 
     };
+
+function checkPostsFor(term,posts,sourceId,callback){
+    var linksTo = [];
+    posts.forEach(function(post, postIndex){
+        if(post.topics.length>0){
+            post.topics.forEach(function(topic, tIndex){
+                if(topic.topic == term){
+                    linksTo.push({target: post.name, source:sourceId,value:topic.topic});
+                }
+            });
+        }
+    });
+
+    callback(linksTo);
+}
+
+
+function formatIntoLinksAndNodes(data, callback){
+    //nodes are posts and links are shared topics
+    var nodes = [];
+    var links = [];
+    data.children.forEach(function(post, postIndex){
+        if (post.topics.length>0){
+            post.topics.forEach(function(topic, topicSetIndex){
+                //post.topics is the aggregated array of topics of title + selftext. check if it has any matches with other posts in the data array
+                var searchTerm = topic.topic;
+                checkPostsFor(searchTerm, data.children, post.name, function(idArrayOfMatches){
+                    if(idArrayOfMatches.length>0){
+                        links.concat(idArrayOfMatches);
+                    }
+                });
+            });
+        }
+        nodes.push(post);
+    });
+    callback({nodes:nodes, links:links});
+}
