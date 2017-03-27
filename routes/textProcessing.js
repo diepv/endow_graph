@@ -336,7 +336,7 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
             //}
             var pushNewNode = true;
             nodes.forEach(function(node,nindex){
-                if(node.topic == topicData.topic){
+                if(node.name === topicData.topic){
                     node.postIds.push(post.name);
                     pushNewNode = false;
                 }
