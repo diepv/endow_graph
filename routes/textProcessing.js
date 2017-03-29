@@ -569,3 +569,88 @@ exports.getThreadsByKeyword = function (req, res) {
 
     };
 
+exports.formatCommentsIntoNodesAndLinks = function(req,res){
+    var commentsArray = req.body.comments;
+    var mode = req.body.node_mode;
+    switch(mode){
+        case "posts":
+            postsAsNodes(commentsArray, function(data){
+               res.send(data);
+            });
+            break;
+        case "topics":
+            topicsAsNodes(commentsArray, function(data){
+                res.send(data);
+            });
+            break;
+    }
+    function postsAsNodes(commentsArray, callback){
+        var nodes = [];
+        var links = [];
+        commentsArray.forEach(function(comment, ci){
+            //add comment to nodes list.
+            nodes.push(comment);
+            var refTopics = []; // refTopics is a list of all the topics within this particular comment
+            comment.topics.forEach(function(topicEntry, teI){
+                //add each topic in this comment to the ref topics.
+                if(refTopics.indexOf(topicEntry.topic)<0){
+                    refTopics.push(topicEntry.topic);
+                }
+
+            });
+
+            //for each comment AFTER this one, we examine the topics and determine if any of them match our current post's topics.
+            //if there's a match, a link is created.
+            for(var commentIndex = ci+1; commentIndex<commentsArray.length; commentIndex++) {
+                //for each comment after the one we're inspecting, create links if topics match one of the topics in reftopics.
+                var commentInQuestion = commentsArray[commentIndex];
+                commentInQuestion.topics.forEach(function(commentInQuestionTopic, ciqti){
+                    var posInRefTopics = refTopics.indexOf(commentInQuestionTopic.topic);
+                    if(posInRefTopics>-1){
+                        var newLink = {source:comment.name, target:commentInQuestion.name, value: commentInQuestionTopic.topic};
+                        links.push(newLink);
+                    }
+                });
+            }
+        });
+        callback({nodes:nodes, links:links});
+    }
+
+    function topicsAsNodes(commentsArray, callback){
+        var nodes = [];
+        var links = [];
+        var topicsAddedAsNodes = [];
+
+        commentsArray.forEach(function(comment, ci){
+            //for each comment, we get the topic list and create a node of each topic. if a node already exists, add comment.name to the postIds list.
+            comment.topics.forEach(function(cTopic, cti){
+                if(topicsAddedAsNodes.indexOf(cTopic.topic)<0){
+                    var newNode = {name: cTopic.topic, postIds:[comment.name]};
+                    nodes.push(newNode);
+                }
+                //create a link with each topic followwing. if link already exists, add comment.name to post id:
+                for(var followingTopicIndex = cti+1; followingTopicIndex<comment.topics.length; followingTopicIndex++){
+                    var followingTopic = comment.topics[followingTopicIndex];
+                    links.forEach(function(link, li){
+                        var makeLink = true;
+                        if(link.source == cTopic.topic || link.target == cTopic.topic){
+                            if(link.source == followingTopic.topic || link.target == followingTopic.topic){
+                                //link exists, just add to postIds:
+                                link.postIds.push(comment.name);
+                                makeLink= false;
+                            }
+                        }
+                        if(makeLink){
+                            var newLink = {source:cTopic.topic, target:followingTopic.topic};
+                            links.push(newLink);
+                        }
+                    });
+                }
+            });
+
+        });
+        callback({nodes:nodes, links:links, posts:commentsArray});
+
+    }
+
+};
