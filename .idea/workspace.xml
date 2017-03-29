@@ -56,8 +56,8 @@
       <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54927886">
-              <caret line="572" column="24" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.5673077">
+              <caret line="573" column="35" selection-start-line="573" selection-start-column="35" selection-end-line="573" selection-end-column="35" />
               <folding>
                 <element signature="e#14207#22910#0" expanded="false" />
                 <element signature="e#14416#14502#0" expanded="false" />
@@ -66,7 +66,7 @@
                 <element signature="e#18311#19041#0" expanded="false" />
                 <element signature="e#19506#19867#0" expanded="false" />
                 <element signature="e#19977#20328#0" expanded="false" />
-                <element signature="e#23549#25100#0" expanded="false" />
+                <element signature="e#23585#25136#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -308,7 +308,7 @@
             <element signature="e#18311#19041#0" expanded="false" />
             <element signature="e#19506#19867#0" expanded="false" />
             <element signature="e#19977#20328#0" expanded="false" />
-            <element signature="e#23549#25100#0" expanded="false" />
+            <element signature="e#23585#25136#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -369,7 +369,7 @@
             <element signature="e#18311#19041#0" expanded="false" />
             <element signature="e#19506#19867#0" expanded="false" />
             <element signature="e#19977#20328#0" expanded="false" />
-            <element signature="e#23549#25100#0" expanded="false" />
+            <element signature="e#23585#25136#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -484,8 +484,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54927886">
-          <caret line="572" column="24" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.5673077">
+          <caret line="573" column="35" selection-start-line="573" selection-start-column="35" selection-end-line="573" selection-end-column="35" />
           <folding>
             <element signature="e#14207#22910#0" expanded="false" />
             <element signature="e#14416#14502#0" expanded="false" />
@@ -494,7 +494,7 @@
             <element signature="e#18311#19041#0" expanded="false" />
             <element signature="e#19506#19867#0" expanded="false" />
             <element signature="e#19977#20328#0" expanded="false" />
-            <element signature="e#23549#25100#0" expanded="false" />
+            <element signature="e#23585#25136#0" expanded="false" />
           </folding>
         </state>
       </provider>
