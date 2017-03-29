@@ -570,10 +570,9 @@ exports.getThreadsByKeyword = function (req, res) {
     };
 
 exports.formatCommentsIntoNodesAndLinks = function(req,res){
-    console.log('req: ');
-    console.log(req.body);
-    var commentsArray = req.body.comments;
-    var mode = req.body.node_mode;
+    var bodyData = JSON.parse(req.body);
+    var commentsArray = bodyData.comments;
+    var mode = bodyData.node_mode;
     switch(mode){
         case "posts":
             //postsAsNodes(commentsArray, function(data){
