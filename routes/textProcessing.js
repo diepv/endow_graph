@@ -571,7 +571,7 @@ exports.getThreadsByKeyword = function (req, res) {
 
 exports.formatCommentsIntoNodesAndLinks = function(req,res){
     console.log('req: ');
-    console.log(req);
+    console.log(req.body);
     var commentsArray = req.body.comments;
     var mode = req.body.node_mode;
     switch(mode){
