@@ -576,14 +576,14 @@ exports.formatCommentsIntoNodesAndLinks = function(req,res){
     console.log(commentsArray);
     switch(mode){
         case "posts":
-            postsAsNodes(commentsArray, function(data){
-               res.send(data);
-            });
+            //postsAsNodes(commentsArray, function(data){
+            //   res.send(data);
+            //});
             break;
         case "topics":
-            topicsAsNodes(commentsArray, function(data){
-                res.send(data);
-            });
+            //topicsAsNodes(commentsArray, function(data){
+            //    res.send(data);
+            //});
             break;
     }
     function postsAsNodes(commentsArray, callback){
