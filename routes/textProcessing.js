@@ -572,6 +572,8 @@ exports.getThreadsByKeyword = function (req, res) {
 exports.formatCommentsIntoNodesAndLinks = function(req,res){
     var commentsArray = req.body.comments;
     var mode = req.body.node_mode;
+    console.log("commentsArray: ");
+    console.log(commentsArray);
     switch(mode){
         case "posts":
             postsAsNodes(commentsArray, function(data){
