@@ -570,7 +570,7 @@ exports.getThreadsByKeyword = function (req, res) {
     };
 
 exports.formatCommentsIntoNodesAndLinks = function(req,res){
-    console.log(req.body.comments);
+    console.log(req.body);
     //var bodyData = JSON.parse(req.body);
     //var commentsArray = bodyData.comments;
     //var mode = bodyData.node_mode;
