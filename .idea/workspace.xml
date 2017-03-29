@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.37860578">
+              <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -53,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40504807">
-              <caret line="575" column="34" selection-start-line="575" selection-start-column="34" selection-end-line="575" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
               <folding>
                 <element signature="e#14207#22910#0" expanded="false" />
                 <element signature="e#14416#14502#0" expanded="false" />
@@ -67,6 +67,7 @@
                 <element signature="e#19506#19867#0" expanded="false" />
                 <element signature="e#19977#20328#0" expanded="false" />
                 <element signature="e#23509#25060#0" expanded="false" />
+                <element signature="e#25113#26861#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -119,8 +120,8 @@
         <option value="$PROJECT_DIR$/routes/reddit.js" />
         <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/config/env/development.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/textProcessing.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -132,8 +133,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1861" />
-    <option name="y" value="134" />
+    <option name="x" value="1888" />
+    <option name="y" value="488" />
     <option name="width" value="1457" />
     <option name="height" value="952" />
   </component>
@@ -230,7 +231,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1861" y="134" width="1457" height="952" extended-state="0" />
+    <frame x="1888" y="488" width="1457" height="952" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17841601" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -309,6 +310,7 @@
             <element signature="e#19506#19867#0" expanded="false" />
             <element signature="e#19977#20328#0" expanded="false" />
             <element signature="e#23509#25060#0" expanded="false" />
+            <element signature="e#25113#26861#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -370,6 +372,7 @@
             <element signature="e#19506#19867#0" expanded="false" />
             <element signature="e#19977#20328#0" expanded="false" />
             <element signature="e#23509#25060#0" expanded="false" />
+            <element signature="e#25113#26861#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -464,14 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/reddit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -484,8 +479,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40504807">
-          <caret line="575" column="34" selection-start-line="575" selection-start-column="34" selection-end-line="575" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
           <folding>
             <element signature="e#14207#22910#0" expanded="false" />
             <element signature="e#14416#14502#0" expanded="false" />
@@ -495,7 +490,16 @@
             <element signature="e#19506#19867#0" expanded="false" />
             <element signature="e#19977#20328#0" expanded="false" />
             <element signature="e#23509#25060#0" expanded="false" />
+            <element signature="e#25113#26861#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37860578">
+          <caret line="51" column="24" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
