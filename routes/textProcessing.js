@@ -570,23 +570,21 @@ exports.getThreadsByKeyword = function (req, res) {
     };
 
 exports.formatCommentsIntoNodesAndLinks = function(req,res){
-    console.log(req.body);
-    console.log(req.body.comments);
-    //var bodyData = JSON.parse(req.body);
-    //var commentsArray = bodyData.comments;
-    //var mode = bodyData.node_mode;
-    //switch(mode){
-    //    case "posts":
-    //        //postsAsNodes(commentsArray, function(data){
-    //        //   res.send(data);
-    //        //});
-    //        break;
-    //    case "topics":
-    //        //topicsAsNodes(commentsArray, function(data){
-    //        //    res.send(data);
-    //        //});
-    //        break;
-    //}
+    var bodyData = JSON.parse(req.body);
+    var commentsArray = bodyData.comments;
+    var mode = bodyData.node_mode;
+    switch(mode){
+        case "posts":
+            postsAsNodes(commentsArray, function(data){
+               res.send(data);
+            });
+            break;
+        case "topics":
+            topicsAsNodes(commentsArray, function(data){
+                res.send(data);
+            });
+            break;
+    }
     res.send("DONE");
     function postsAsNodes(commentsArray, callback){
         var nodes = [];
