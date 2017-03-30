@@ -573,49 +573,51 @@ exports.formatCommentsIntoNodesAndLinks = function(req,res){
     var bodyData = req.body;
     var commentsArray = bodyData.comments;
     var mode = bodyData.node_mode;
-    switch(mode){
-        case "posts":
-            postsAsNodes(commentsArray, function(data){
-               res.send(data);
-            });
-            break;
-        case "topics":
-            topicsAsNodes(commentsArray, function(data){
-                res.send(data);
-            });
-            break;
-    }
-    function postsAsNodes(commentsArray, callback){
-        var nodes = [];
-        var links = [];
-        commentsArray.forEach(function(comment, ci){
-            //add comment to nodes list.
-            nodes.push(comment);
-            var refTopics = []; // refTopics is a list of all the topics within this particular comment
-            comment.topics.forEach(function(topicEntry, teI){
-                //add each topic in this comment to the ref topics.
-                if(refTopics.indexOf(topicEntry.topic)<0){
-                    refTopics.push(topicEntry.topic);
-                }
-
-            });
-
-            //for each comment AFTER this one, we examine the topics and determine if any of them match our current post's topics.
-            //if there's a match, a link is created.
-            for(var commentIndex = ci+1; commentIndex<commentsArray.length; commentIndex++) {
-                //for each comment after the one we're inspecting, create links if topics match one of the topics in reftopics.
-                var commentInQuestion = commentsArray[commentIndex];
-                commentInQuestion.topics.forEach(function(commentInQuestionTopic, ciqti){
-                    var posInRefTopics = refTopics.indexOf(commentInQuestionTopic.topic);
-                    if(posInRefTopics>-1){
-                        var newLink = {source:comment.name, target:commentInQuestion.name, value: commentInQuestionTopic.topic};
-                        links.push(newLink);
-                    }
-                });
-            }
-        });
-        callback({nodes:nodes, links:links});
-    }
+    console.log('comments array: ',typeof commentsArray);
+    console.log(commentsArray);
+    //switch(mode){
+    //    case "posts":
+    //        postsAsNodes(commentsArray, function(data){
+    //           res.send(data);
+    //        });
+    //        break;
+    //    case "topics":
+    //        topicsAsNodes(commentsArray, function(data){
+    //            res.send(data);
+    //        });
+    //        break;
+    //}
+    //function postsAsNodes(commentsArray, callback){
+    //    var nodes = [];
+    //    var links = [];
+    //    commentsArray.forEach(function(comment, ci){
+    //        //add comment to nodes list.
+    //        nodes.push(comment);
+    //        var refTopics = []; // refTopics is a list of all the topics within this particular comment
+    //        comment.topics.forEach(function(topicEntry, teI){
+    //            //add each topic in this comment to the ref topics.
+    //            if(refTopics.indexOf(topicEntry.topic)<0){
+    //                refTopics.push(topicEntry.topic);
+    //            }
+    //
+    //        });
+    //
+    //        //for each comment AFTER this one, we examine the topics and determine if any of them match our current post's topics.
+    //        //if there's a match, a link is created.
+    //        for(var commentIndex = ci+1; commentIndex<commentsArray.length; commentIndex++) {
+    //            //for each comment after the one we're inspecting, create links if topics match one of the topics in reftopics.
+    //            var commentInQuestion = commentsArray[commentIndex];
+    //            commentInQuestion.topics.forEach(function(commentInQuestionTopic, ciqti){
+    //                var posInRefTopics = refTopics.indexOf(commentInQuestionTopic.topic);
+    //                if(posInRefTopics>-1){
+    //                    var newLink = {source:comment.name, target:commentInQuestion.name, value: commentInQuestionTopic.topic};
+    //                    links.push(newLink);
+    //                }
+    //            });
+    //        }
+    //    });
+    //    callback({nodes:nodes, links:links});
+    //}
 
     function topicsAsNodes(commentsArray, callback){
         var nodes = [];
