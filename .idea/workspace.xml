@@ -56,17 +56,31 @@
       <file leaf-file-name="textProcessing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1442307">
-              <caret line="622" column="36" selection-start-line="622" selection-start-column="36" selection-end-line="622" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.6875">
+              <caret line="608" column="83" selection-start-line="608" selection-start-column="83" selection-end-line="608" selection-end-column="83" />
               <folding>
-                <element signature="e#14207#22910#0" expanded="false" />
-                <element signature="e#14416#14502#0" expanded="false" />
-                <element signature="e#14561#17179#0" expanded="false" />
-                <element signature="e#17469#17743#0" expanded="false" />
-                <element signature="e#18311#19041#0" expanded="false" />
-                <element signature="e#19506#19867#0" expanded="false" />
-                <element signature="e#19977#20328#0" expanded="false" />
+                <element signature="n#!!block;n#newTopic#0" expanded="false" />
+                <element signature="n#!!block;n#checkPostsFor#0" expanded="false" />
+                <element signature="n#!!block;n#formatIntoLinksAndNodes#0" expanded="false" />
+                <element signature="n#!!block;n#formatIntoTopicNodesAndLinks#0" expanded="false" />
+                <element signature="e#14110#22813#0" expanded="false" />
+                <element signature="e#14319#14405#0" expanded="false" />
+                <element signature="e#14464#17082#0" expanded="false" />
+                <element signature="e#17372#17646#0" expanded="false" />
+                <element signature="e#18214#18944#0" expanded="false" />
+                <element signature="e#19409#19770#0" expanded="false" />
+                <element signature="e#19880#20231#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userProcessing.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/userProcessing.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -119,6 +133,7 @@
         <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/config/env/development.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/userProcessing.js" />
         <option value="$PROJECT_DIR$/routes/textProcessing.js" />
       </list>
     </option>
@@ -131,8 +146,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1698" />
-    <option name="y" value="51" />
+    <option name="x" value="1565" />
+    <option name="y" value="231" />
     <option name="width" value="1457" />
     <option name="height" value="952" />
   </component>
@@ -229,7 +244,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1698" y="51" width="1457" height="952" extended-state="0" />
+    <frame x="1565" y="231" width="1457" height="952" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17841601" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -300,13 +315,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="573" column="2" selection-start-line="573" selection-start-column="2" selection-end-line="573" selection-end-column="2" />
           <folding>
-            <element signature="e#14207#22910#0" expanded="false" />
-            <element signature="e#14416#14502#0" expanded="false" />
-            <element signature="e#14561#17179#0" expanded="false" />
-            <element signature="e#17469#17743#0" expanded="false" />
-            <element signature="e#18311#19041#0" expanded="false" />
-            <element signature="e#19506#19867#0" expanded="false" />
-            <element signature="e#19977#20328#0" expanded="false" />
+            <element signature="n#!!block;n#newTopic#0" expanded="false" />
+            <element signature="n#!!block;n#checkPostsFor#0" expanded="false" />
+            <element signature="n#!!block;n#formatIntoLinksAndNodes#0" expanded="false" />
+            <element signature="n#!!block;n#formatIntoTopicNodesAndLinks#0" expanded="false" />
+            <element signature="e#14110#22813#0" expanded="false" />
+            <element signature="e#14319#14405#0" expanded="false" />
+            <element signature="e#14464#17082#0" expanded="false" />
+            <element signature="e#17372#17646#0" expanded="false" />
+            <element signature="e#18214#18944#0" expanded="false" />
+            <element signature="e#19409#19770#0" expanded="false" />
+            <element signature="e#19880#20231#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -360,13 +379,17 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding>
-            <element signature="e#14207#22910#0" expanded="false" />
-            <element signature="e#14416#14502#0" expanded="false" />
-            <element signature="e#14561#17179#0" expanded="false" />
-            <element signature="e#17469#17743#0" expanded="false" />
-            <element signature="e#18311#19041#0" expanded="false" />
-            <element signature="e#19506#19867#0" expanded="false" />
-            <element signature="e#19977#20328#0" expanded="false" />
+            <element signature="n#!!block;n#newTopic#0" expanded="false" />
+            <element signature="n#!!block;n#checkPostsFor#0" expanded="false" />
+            <element signature="n#!!block;n#formatIntoLinksAndNodes#0" expanded="false" />
+            <element signature="n#!!block;n#formatIntoTopicNodesAndLinks#0" expanded="false" />
+            <element signature="e#14110#22813#0" expanded="false" />
+            <element signature="e#14319#14405#0" expanded="false" />
+            <element signature="e#14464#17082#0" expanded="false" />
+            <element signature="e#17372#17646#0" expanded="false" />
+            <element signature="e#18214#18944#0" expanded="false" />
+            <element signature="e#19409#19770#0" expanded="false" />
+            <element signature="e#19880#20231#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -479,18 +502,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/userProcessing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/textProcessing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1442307">
-          <caret line="622" column="36" selection-start-line="622" selection-start-column="36" selection-end-line="622" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.6875">
+          <caret line="608" column="83" selection-start-line="608" selection-start-column="83" selection-end-line="608" selection-end-column="83" />
           <folding>
-            <element signature="e#14207#22910#0" expanded="false" />
-            <element signature="e#14416#14502#0" expanded="false" />
-            <element signature="e#14561#17179#0" expanded="false" />
-            <element signature="e#17469#17743#0" expanded="false" />
-            <element signature="e#18311#19041#0" expanded="false" />
-            <element signature="e#19506#19867#0" expanded="false" />
-            <element signature="e#19977#20328#0" expanded="false" />
+            <element signature="n#!!block;n#newTopic#0" expanded="false" />
+            <element signature="n#!!block;n#checkPostsFor#0" expanded="false" />
+            <element signature="n#!!block;n#formatIntoLinksAndNodes#0" expanded="false" />
+            <element signature="n#!!block;n#formatIntoTopicNodesAndLinks#0" expanded="false" />
+            <element signature="e#14110#22813#0" expanded="false" />
+            <element signature="e#14319#14405#0" expanded="false" />
+            <element signature="e#14464#17082#0" expanded="false" />
+            <element signature="e#17372#17646#0" expanded="false" />
+            <element signature="e#18214#18944#0" expanded="false" />
+            <element signature="e#19409#19770#0" expanded="false" />
+            <element signature="e#19880#20231#0" expanded="false" />
           </folding>
         </state>
       </provider>

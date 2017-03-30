@@ -377,9 +377,6 @@ function formatIntoTopicNodesAndLinks(data, finalCallback){
         });
     });
 
-
-    console.log("NODES LENGTH: ",nodes.length);
-    console.log("LINKS LENGTH: ",links.length);
     finalCallback({nodes:nodes, links:links, posts:data.children});
 
 }
@@ -588,16 +585,18 @@ exports.formatCommentsIntoNodesAndLinks = function(req,res){
     function postsAsNodes(commentsArray, callback){
         var nodes = [];
         var links = [];
+
         commentsArray.forEach(function(comment, ci){
             //add comment to nodes list.
             nodes.push(comment);
             var refTopics = []; // refTopics is a list of all the topics within this particular comment
-            comment.topics.forEach(function(topicEntry, teI){
-                //add each topic in this comment to the ref topics.
-                if(refTopics.indexOf(topicEntry.topic)<0){
-                    refTopics.push(topicEntry.topic);
-                }
-
+            comment.topics.forEach(function(topicSet, tsI){
+                topicSet.forEach(function(topicEntry, teI){
+                    //add each topic in this comment to the ref topics.
+                    if(refTopics.indexOf(topicEntry.term)<0){
+                        refTopics.push(topicEntry.term);
+                    }
+                });
             });
 
             //for each comment AFTER this one, we examine the topics and determine if any of them match our current post's topics.
@@ -606,11 +605,14 @@ exports.formatCommentsIntoNodesAndLinks = function(req,res){
                 //for each comment after the one we're inspecting, create links if topics match one of the topics in reftopics.
                 var commentInQuestion = commentsArray[commentIndex];
                 commentInQuestion.topics.forEach(function(commentInQuestionTopic, ciqti){
-                    var posInRefTopics = refTopics.indexOf(commentInQuestionTopic.topic);
-                    if(posInRefTopics>-1){
-                        var newLink = {source:comment.name, target:commentInQuestion.name, value: commentInQuestionTopic.topic};
-                        links.push(newLink);
-                    }
+                    commentInQuestionTopic.forEach(function(commentTopics, cotoI){
+                        var posInRefTopics = refTopics.indexOf(commentTopics.term);
+                        if(posInRefTopics>-1){
+                            var newLink = {source:comment.name, target:commentInQuestion.name, value: commentTopics.term};
+                            links.push(newLink);
+                        }
+                    });
+
                 });
             }
         });
@@ -642,7 +644,7 @@ exports.formatCommentsIntoNodesAndLinks = function(req,res){
                             }
                         }
                         if(makeLink){
-                            var newLink = {source:cTopic.topic, target:followingTopic.topic};
+                            var newLink = {source:cTopic.topic, target:followingTopic.topic, postIds:[comment.name]};
                             links.push(newLink);
                         }
                     });
